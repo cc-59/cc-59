@@ -1,6 +1,6 @@
 # Claudiu Cristian Sandu
 
-Senior full-stack engineer in Copenhagen. I have written TypeScript for ten years.
+Senior full-stack engineer in Copenhagen. I have written JavaScript for ten years, and TypeScript for six.
 
 Most of my work sits in private company repositories. This page describes it, because
 the code cannot.
@@ -20,10 +20,10 @@ Three things I am strongest at:
 
 **Data integrity.** I write database migrations against live schemas. I keep money in
 integer units, so rounding cannot lose it. And I put a rule in the database when the
-application is the wrong place for it. One example: a building can hold two rent
-regulations at the same time, but their date ranges must never overlap. That is a
-constraint on the data. It belongs in a unique index, not in a method someone can
-bypass.
+application is the wrong place for it. One example: when the system cannot match a
+bank payment to an invoice, it parks the money in a suspense account. A unique key on
+those parked payments means a re-run can never post the same one twice. The database
+guarantees it, not a method someone can forget to call.
 
 **Silent failures.** I look for the errors that print no error. A function that skips a
 record and reports success is worse than a crash, because nobody sees it. Most of the
@@ -46,8 +46,8 @@ on one. It took a close read of the specification to see that. Until then we wer
 dropping the inbound confirmations, which meant money arrived and no invoice ever
 recorded it. The awkward part was that the slip reference does not survive the round
 trip, so there is nothing obvious to join on. I matched on what does come back — the
-creditor, the customer number, the amount and the date. When two invoices fit equally
-well, the system stops and asks a person rather than guessing.
+creditor, the customer number, the amount and the date. When nothing identifies the
+invoice for certain, the system parks the payment for a person to resolve, rather than guessing.
 `TypeScript · Node · TypeORM · GraphQL · PostgreSQL · AWS Lambda · SQS · react-admin`
 
 **Full-stack Developer — Chaos** · 2024–2025
